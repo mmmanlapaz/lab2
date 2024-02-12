@@ -2,7 +2,7 @@
 <html>
 <head>
 <style>
-.error {color: #00796b;}
+.error {color: #FF0000;}
 </style>
 </head>
 <body>  
@@ -101,30 +101,38 @@ echo $gender;
 ?>
 
 <?php
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") 
+{
+
+// For Xampp Localhost
+//$servername = "localhost";
+//$username = "root";
+//$password = "";
+//$dbname = "myDB";
+
+//for Socitcloud
 $servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "myDB";
+$username = "webprogmi221";
+$password = "g_6bCitLu.ljMK*m";
+$dbname = "webprogmi221";
 
 // Create connection
-$conn = mysqli_connect($servername, $username, $password, $dbname);
+$conn = new mysqli($servername, $username, $password, $dbname);
 // Check connection
-if (!$conn) {
-  die("Connection failed: " . mysqli_connect_error());
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "INSERT INTO MyGuests (name,email,website,comment,gender)
-VALUES ('$name', '$email', '$website', '$comment', '$gender')";
+$sql = "INSERT INTO mmmanlapaz_myguests (name, email,website,comment,gender)
+VALUES ('$name', '$email','$website','$comment','$gender')";
 
-
-if (mysqli_query($conn, $sql)) {
-  echo "Record updated successfully";
+if ($conn->query($sql) === TRUE) {
+  echo "New record created successfully";
 } else {
-  echo "Error updating record: " . mysqli_error($conn);
+  echo "Error: " . $sql . "<br>" . $conn->error;
 }
 
-mysqli_close($conn);
+$conn->close();
+}
 ?>
-
-</body>
-</html>
