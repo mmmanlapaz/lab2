@@ -111,7 +111,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 //$password = "";
 //$dbname = "myDB";
 
-
+//for Socitcloud
+$servername = "localhost";
+$username = "webprogmi221";
+$password = "g_6bCitLu.ljMK*m";
+$dbname = "webprogmi221";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
